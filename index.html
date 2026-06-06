@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Base Reset & Variables */
+        /* Base Reset & Transisi Smooth */
         * {
             margin: 0;
             padding: 0;
@@ -20,6 +20,12 @@
             background-color: #141414;
             color: #ffffff;
             overflow-x: hidden;
+            /* Animasi Fade In */
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Navbar Style */
@@ -35,221 +41,64 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
             transition: background 0.3s ease;
         }
-        .navbar.scrolled {
-            background-color: #141414;
-        }
+        .navbar.scrolled { background-color: #141414; }
         .nav-logo {
-            color: #E50914;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-decoration: none;
+            color: #E50914; font-size: 28px; font-weight: 700;
+            letter-spacing: 1px; text-decoration: none;
         }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-        .nav-links a {
-            color: #e5e5e5;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #b3b3b3;
-        }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        .nav-links a:hover { color: #b3b3b3; }
 
-        /* Hero / Billboard Section */
+        /* Hero Section */
         .hero {
             position: relative;
             height: 75vh;
             background: linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.2) 60%), 
                         url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            padding: 0 4%;
+            display: flex; align-items: center; padding: 0 4%;
         }
         .hero-fade-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
             background: linear-gradient(to top, #141414, transparent);
         }
-        .hero-content {
-            max-width: 600px;
-            z-index: 10;
-        }
-        .hero-tag {
-            font-size: 14px;
-            font-weight: 700;
-            color: #aaa;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .hero-title {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-        .hero-desc {
-            font-size: 18px;
-            color: #e5e5e5;
-            margin-bottom: 25px;
-            line-height: 1.4;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-        }
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 26px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 4px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .btn:hover {
-            opacity: 0.85;
-        }
-        .btn-play {
-            background-color: #ffffff;
-            color: #000000;
-        }
-        .btn-info {
-            background-color: rgba(109, 109, 110, 0.7);
-            color: #ffffff;
-        }
+        .hero-content { max-width: 600px; z-index: 10; }
+        .hero-tag { font-size: 14px; font-weight: 700; color: #aaa; letter-spacing: 4px; margin-bottom: 10px; }
+        .hero-title { font-size: 56px; font-weight: 700; margin-bottom: 20px; line-height: 1.1; }
+        .hero-desc { font-size: 18px; color: #e5e5e5; margin-bottom: 25px; line-height: 1.4; }
+        .hero-btns { display: flex; gap: 15px; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; font-size: 16px; font-weight: 700; border-radius: 4px; text-decoration: none; cursor: pointer; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.85; }
+        .btn-play { background-color: #ffffff; color: #000000; }
+        .btn-info { background-color: rgba(109, 109, 110, 0.7); color: #ffffff; }
 
-        /* Main Content / Movie Rows */
-        .main-container {
-            padding: 0 4% 50px 4%;
-            position: relative;
-            top: -40px;
-            z-index: 20;
-        }
-        .category-row {
-            margin-bottom: 40px;
-        }
-        .row-title {
-            font-size: 24px;
-            color: #e5e5e5;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        @media (max-width: 992px) {
-            .card-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .card-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 38px; }
-        }
+        /* Main Content */
+        .main-container { padding: 0 4% 50px 4%; position: relative; top: -40px; z-index: 20; }
+        .row-title { font-size: 24px; color: #e5e5e5; font-weight: 700; margin-bottom: 20px; display: inline-block; }
+        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        @media (max-width: 992px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } .hero-title { font-size: 38px; } }
 
-        /* Netflix Content Card Style */
+        /* Card Style - Dibuat jadi Link */
         .movie-card {
-            background-color: #181818;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-            position: relative;
-            display: flex;
-            flex-direction: column;
+            background-color: #181818; border-radius: 8px; overflow: hidden;
+            cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6); position: relative;
+            display: flex; flex-direction: column; text-decoration: none; /* Hilangkan garis bawah link */
         }
-        .movie-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.9);
-        }
-        
-        /* UKURAN KOTAK GAMBAR DIPERBESAR KE 450PX */
-        .card-img-wrapper {
-            position: relative;
-            width: 100%;
-            height: 450px; 
-            background-size: cover;
-            background-position: center;
-        }
-        
-        /* Pengaturan posisi foto agar pas di tengah objek penting */
+        .movie-card:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.9); }
+        .card-img-wrapper { position: relative; width: 100%; height: 450px; background-size: cover; background-position: center; }
         .card-img-1 { background-image: url('mentor.jpeg'); background-position: center 20%; }
         .card-img-2 { background-image: url('pasben.jpeg'); background-position: center center; }
         .card-img-3 { background-image: url('pasopati.jpeg'); background-position: center 60%; }
-
-        .card-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: #E50914;
-            color: #fff;
-            padding: 4px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .card-info {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content:开;
-        }
-        .card-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-        .match-score {
-            color: #46d369;
-            font-weight: 700;
-        }
-        .year-badge {
-            border: 1px solid rgba(255,255,255,0.4);
-            padding: 1px 6px;
-            font-size: 12px;
-            border-radius: 3px;
-        }
-        .card-heading {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-        .card-description {
-            font-size: 14.5px;
-            color: #bcbcbc;
-            line-height: 1.5;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 2px solid #222;
-            padding: 40px 4%;
-            text-align: center;
-            color: #808080;
-            font-size: 14px;
-        }
-        footer p { margin-bottom: 10px; }
+        .card-badge { position: absolute; top: 15px; left: 15px; background-color: #E50914; color: #fff; padding: 4px 10px; font-size: 12px; font-weight: 700; border-radius: 2px; }
+        .card-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; color: #fff; }
+        .match-score { color: #46d369; font-weight: 700; }
+        .year-badge { border: 1px solid rgba(255,255,255,0.4); padding: 1px 6px; font-size: 12px; border-radius: 3px; }
+        .card-heading { font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .card-description { font-size: 14.5px; color: #bcbcbc; line-height: 1.5; }
+        footer { border-top: 2px solid #222; padding: 40px 4%; text-align: center; color: #808080; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -267,12 +116,11 @@
         <div class="hero-content">
             <div class="hero-tag">NETFLIX ORIGINAL SERIES</div>
             <h1 class="hero-title">All About Me:<br>The Journey</h1>
-            <p class="hero-desc">
-                Kisah petualangan akademik dan organisasi seorang mahasiswa ITB dalam mengarungi dinamika kampus. Mulai dari membimbing mahasiswa baru hingga berkontribusi aktif di garda depan KM ITB.
-            </p>
+            <p class="hero-desc">Kisah petualangan akademik dan organisasi seorang mahasiswa ITB dalam mengarungi dinamika kampus. Mulai dari membimbing mahasiswa baru hingga berkontribusi aktif di garda depan KM ITB.</p>
             <div class="hero-btns">
                 <a href="#oskm" class="btn btn-play"><i class="fa-solid fa-play"></i> Mulai Tur</a>
-                <a href="https://github.com/brenzekkk" target="_blank" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> GitHub Profil</a>
+                <!-- Link GitHub Sudah Diperbaiki (brenzekk) -->
+                <a href="https://github.com/brenzekk" target="_blank" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> GitHub Profil</a>
             </div>
         </div>
         <div class="hero-fade-bottom"></div>
@@ -281,59 +129,37 @@
     <main class="main-container">
         <div class="category-row">
             <h2 class="row-title">Daftar Putar Pengalaman Terbaik (My Roles)</h2>
-            
             <div class="card-grid">
                 
-                <section class="movie-card" id="oskm">
-                    <div class="card-img-wrapper card-img-1">
-                        <span class="card-badge">Eps 1</span>
-                    </div>
+                <!-- Card 1 -> Mengarah ke mentor.html -->
+                <a href="mentor.html" class="movie-card" id="oskm">
+                    <div class="card-img-wrapper card-img-1"><span class="card-badge">Eps 1</span></div>
                     <div class="card-info">
-                        <div class="card-meta">
-                            <span class="match-score">99% Match</span>
-                            <span class="year-badge">2024</span>
-                            <span>1 Musim</span>
-                        </div>
+                        <div class="card-meta"><span class="match-score">99% Match</span><span class="year-badge">2024</span><span>1 Musim</span></div>
                         <h3 class="card-heading">Mentor OSKM 2024</h3>
-                        <p class="card-description">
-                            Menjadi garda terdepan menyambut mahasiswa baru ITB 2024. Bertanggung jawab menanamkan nilai-nilai dasar kemahasiswaan, memandu adaptasi lingkungan kampus, serta menjadi teladan esensial dalam OSKM.
-                        </p>
+                        <p class="card-description">Menjadi garda terdepan menyambut mahasiswa baru ITB 2024. Bertanggung jawab menanamkan nilai-nilai dasar kemahasiswaan, memandu adaptasi lingkungan kampus, serta menjadi teladan esensial dalam OSKM.</p>
                     </div>
-                </section>
+                </a>
 
-                <section class="movie-card" id="wisokto">
-                    <div class="card-img-wrapper card-img-2">
-                        <span class="card-badge">Eps 2</span>
-                    </div>
+                <!-- Card 2 -> Mengarah ke pasben.html -->
+                <a href="pasben.html" class="movie-card" id="wisokto">
+                    <div class="card-img-wrapper card-img-2"><span class="card-badge">Eps 2</span></div>
                     <div class="card-info">
-                        <div class="card-meta">
-                            <span class="match-score">96% Match</span>
-                            <span class="year-badge">2025</span>
-                            <span>Spesial</span>
-                        </div>
+                        <div class="card-meta"><span class="match-score">96% Match</span><span class="year-badge">2025</span><span>Spesial</span></div>
                         <h3 class="card-heading">Pasben Wisokto 2025</h3>
-                        <p class="card-description">
-                            Berkontribusi dalam menyukseskan perayaan wisuda terbesar di ITB (Wisuda Oktober 2025). Mengawal jalannya arak-arakan massa kampus serta memastikan atmosfer apresiasi bagi para wisudawan berjalan megah dan kondusif.
-                        </p>
+                        <p class="card-description">Berkontribusi dalam menyukseskan perayaan wisuda terbesar di ITB (Wisuda Oktober 2025). Mengawal jalannya arak-arakan massa kampus serta memastikan atmosfer apresiasi bagi para wisudawan berjalan megah dan kondusif.</p>
                     </div>
-                </section>
+                </a>
 
-                <section class="movie-card" id="pasopati">
-                    <div class="card-img-wrapper card-img-3">
-                        <span class="card-badge">Eps 3</span>
-                    </div>
+                <!-- Card 3 -> Mengarah ke pasopati.html -->
+                <a href="pasopati.html" class="movie-card" id="pasopati">
+                    <div class="card-img-wrapper card-img-3"><span class="card-badge">Eps 3</span></div>
                     <div class="card-info">
-                        <div class="card-meta">
-                            <span class="match-score">98% Match</span>
-                            <span class="year-badge">Terbaru</span>
-                            <span>Ongoing</span>
-                        </div>
+                        <div class="card-meta"><span class="match-score">98% Match</span><span class="year-badge">Terbaru</span><span>Ongoing</span></div>
                         <h3 class="card-heading">Pasopati ITB</h3>
-                        <p class="card-description">
-                            Keterlibatan strategis dalam unit/tim legendaris Pasopati ITB. Fokus pada pergerakan taktis, pengamanan 3 pilar UKM Pasopati, serta mengasah kepemimpinan tingkat lanjut melalui aksi nyata di lapangan.
-                        </p>
+                        <p class="card-description">Keterlibatan strategis dalam unit/tim legendaris Pasopati ITB. Fokus pada pergerakan taktis, pengamanan 3 pilar UKM Pasopati, serta mengasah kepemimpinan tingkat lanjut melalui aksi nyata di lapangan.</p>
                     </div>
-                </section>
+                </a>
 
             </div>
         </div>
@@ -341,17 +167,13 @@
 
     <footer>
         <p>&copy; 2026 BRANDONFLIX. Dibuat penuh dedikasi untuk Tugas K2.</p>
-        <p style="font-size: 12px; color: #555;">Sistem terintegrasi otomatis dengan GitHub Pages.</p>
     </footer>
 
     <script>
         window.addEventListener('scroll', function() {
             const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         });
     </script>
 </body>
